@@ -1,8 +1,25 @@
-strugo, lea.khodo
 
-Eliyahu Strugo (305589269), Lea Khodorkovski (312250392)
+Performance is the major motivation for multi-threaded programming. Multiple processors can
+execute multiple threads at the same time and do the same amount of computations in less time
+than it will take a single processor.
+Two challenges complicate multi-threaded programming:
+1) In many cases it is difficult to split the big task into small parts that can run in parallel.
+2) Running in multiple threads requires synchronisation and communication between threads.
+This introduces an overhead which without careful design can increase the total runtime
+significantly.
+Over the years, several designs were proposed in order to solve these challenges. In this exercise
+we will implement one of these designs, named MapReduce.
+MapReduce is used to parallelise tasks of a specific structure. Such tasks are defined by two
+functions, map and reduce, used as follows:
+1) The input is given as a sequence of input elements.
+2) (Map phase) The map function is applied to each input element, producing a sequence of
+intermediary elements.
+3) (Sort/Shuffle phases) The intermediary elements are sorted into new sequences (more on
+this later).
+4) (Reduce phase) The reduce function is applied to each of the sorted sequences of
+intermediary elements, producing a sequence of output elements.
+5) The output is a concatenation of all sequences of output elements.
 
-EX: 3
 
 FILES:
 Makefile -- the Makefile
@@ -12,37 +29,3 @@ MapReduceClient.cpp -- the implementation of the MapReduceClient class
 fileWordCounter_comparison.png
 
 
-REMARKS:
--
-
-ANSWERS:
-
-Description of the  hardware you used and explain your results:
-The  hardware:
-Ran  on an aquarium computer via ssh.
-CPU(s):  4
-Core(s) per socket:  4
-Socket(s): 1
-
-Model name:     Intel(R) Core(TM) i5-4570 CPU @ 3.20GHz
-
-
-By looking at tthe graph we can see that the most difference in running
-time is between 2 threads and 4 threads, adding the third thread cut down the running time from
-nearly 49 seconds to nearly 21, which makes sense as we have 4 cores and and now the resources are
-fully utilized.  We also see a slight improvement for 10 threads.
-
-
-Q1:
-The optimal number of kernel level threads is the number of cores of the computer that runs the application.
-Clearly, if the number of threads is less then the number of cores, then the resources are fully utilized.
-Moreover, if the number of threads is greater then the number of cores since  foo is a CPU bound application
-then even though the resources are fully utilized, there is context switching overhead.
-
-Q2:
-1. 2n:
- Each of the n process (parent) creates create a new process (child) and all  them will print message at some point.
-
-2. (n!)^2:
-Each parent will wait for his child then there are n! options for the parents and n! options for there children.
-Thus there are n!*n! options.

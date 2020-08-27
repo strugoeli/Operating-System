@@ -1,0 +1,9 @@
+strugo, lea.khodo
+
+Eliyahu Strugo (305589269), Lea Khodorkovski(312250392)
+
+EX: 4
+
+FILES:
+Makefile -- the Makefile
+VirtualMemory.cpp -- implementation of the VirtualMemory API

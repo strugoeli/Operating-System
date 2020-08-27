@@ -1,0 +1,58 @@
+strugo, lea.khodo
+
+Eliyahu Strugo (305589269), Lea Khodorkovski (312250392)
+
+EX: 2
+
+FILES:
+Makefile -- the Makefile
+uthreads.cpp -- the implementation of the user-level threads library
+Thread.h -- header file of class representing the instances of threads
+Thread.cpp -- the implementation of the thread class
+ThreadManager.h -- Singleton, manage all the operation between threads
+ThreadManager.cpp -- Implementation of the ThreadManager class
+
+
+REMARKS:
+- We choose to do the ThreadManager class singleton,
+because we want only one manager in each running process
+- We choose to use smart_pointer unique_ptr
+
+ANSWERS:
+
+Q1:
+Using the user-level threads scheduling useful if we want to decrease the
+overhead, in other words, to reduce the number of kernel context switch operations.
+using the uthreads library give the user to scheduling the threads instead of the OS.
+
+Q2:
+Advantages:
+- Number of tabs can run in parallel because they dont have any "critical section"
+- Each process has its own memory, and it cannot be affected by other process
+
+Disadvantages:
+- Each context switch is very expensive because it need to save all the process memory
+(because they dont share resources)
+- Because they dont share resources, This will allocate more memory
+- There is no way to split the job of a single tab, while using kernel-level threads can
+
+Q3:
+We open Shotwell on the CS computers and extract its pid and run "kill pid",
+it terminated the process of the Shotwell.
+The interrupts are involved during the command execution:
+    - typing the "kill pid" letters on the
+      shell (which give us the option to sent wanted system call from the user)
+    - when we type "Enter" (Keyboard)
+
+The signal are involve during the command execution:
+    - the signal TERM thrown by kill-system call  from the OS
+
+Q4:
+the difference is that :
+Real time is the actual time elapsed, according to the computer clock,
+while the Virtual time  is the time in the process, when the cpu is running.
+
+We will use Real time:
+- if we want to determine the time of some process to run according to the computer clock
+We will use Virtual time:
+when we want to control/measure the time of a single process or thread
